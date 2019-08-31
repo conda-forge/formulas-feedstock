@@ -1,5 +1,5 @@
 {% set name = "formulas" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: ee9bebe86f37239eeba24c92a16f725c22a409d0215d12246f4e934080f9e54c
+  sha256: eec9f0bef088d877effaec962b8967578934b407f18383056b865504fa96c3b7
   patches:
     - 0001-bs4-canonical.patch
 
