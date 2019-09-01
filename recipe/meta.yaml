@@ -1,15 +1,13 @@
 {% set name = "formulas" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://github.com/vinci1it2000/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: ee9bebe86f37239eeba24c92a16f725c22a409d0215d12246f4e934080f9e54c
-  patches:
-    - 0001-bs4-canonical.patch
+  sha256: eec9f0bef088d877effaec962b8967578934b407f18383056b865504fa96c3b7
 
 build:
   noarch: python
@@ -41,22 +39,25 @@ requirements:
   run:
     - numpy >=1.15
     - python >=3
+    - python-dateutil
     - regex
     - schedula >=0.3.1
 
 test:
   source_files:
     - setup.cfg
-    - test/test_files
-    - test/test_cell.py
-    - test/test_excel.py
-    - test/test_import.py
-    - test/test_parser.py
-    - test/test_ranges.py
-    - test/test_tokens.py
+    - test
+    # - test/test_files
+    # - test/test_cell.py
+    # - test/test_excel.py
+    # - test/test_import.py
+    # - test/test_parser.py
+    # - test/test_ranges.py
+    # - test/test_tokens.py
   requires:
     - beautifulsoup4
     - ddt
+    - dill
     - docutils
     - flask
     - jinja2
@@ -78,6 +79,8 @@ test:
   imports:
     - formulas
   commands:
+    - rm test/test_readme.py test/test_setup.py  # [unix]
+    - del test\test_readme.py test\test_setup.py  # [win]
     - nosetests
 
 about:
