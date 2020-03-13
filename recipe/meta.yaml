@@ -1,5 +1,5 @@
 {% set name = "formulas" %}
-{% set version = "0.4.0" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name }}
@@ -7,21 +7,19 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: eec9f0bef088d877effaec962b8967578934b407f18383056b865504fa96c3b7
+  sha256: 49c5019d0609968ba76931c5fdb4e668bb105ffcd10ce3ca365a840e4041a424
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - beautifulsoup4
     - ddt
     - docutils
     - flask
     - jinja2
-    - lxml
     - multiprocess
     - nose
     - numpy >=1.15
@@ -32,7 +30,7 @@ requirements:
     - python-graphviz
     - regex
     - requests
-    - schedula >=0.3.1
+    - schedula >=1.1.1
     - sphinx
     - sphinx_rtd_theme
     - sphinxcontrib-restbuilder
@@ -41,34 +39,25 @@ requirements:
     - python >=3
     - python-dateutil
     - regex
-    - schedula >=0.3.1
+    - schedula >=1.1.1
 
 test:
   source_files:
     - setup.cfg
     - test
-    # - test/test_files
-    # - test/test_cell.py
-    # - test/test_excel.py
-    # - test/test_import.py
-    # - test/test_parser.py
-    # - test/test_ranges.py
-    # - test/test_tokens.py
   requires:
-    - beautifulsoup4
     - ddt
     - dill
     - docutils
     - flask
     - jinja2
-    - lxml
     - multiprocess
     - nose
     - numpy >=1.15
     - openpyxl
     - pip
     - pygments
-    - python
+    - python >=3
     - python-graphviz <0.10.1
     - regex
     - requests
@@ -82,13 +71,14 @@ test:
     - rm test/test_readme.py test/test_setup.py  # [unix]
     - del test\test_readme.py test\test_setup.py  # [win]
     - nosetests
+    - python -m pip check
 
 about:
   home: https://github.com/vinci1it2000/formulas
   license: EUPL-1.1
   license_family: OTHER
   license_file: LICENSE.txt
-  summary: 'Parse and compile Excel formulas and workbooks in python code.'
+  summary: Parse and compile Excel formulas and workbooks in python code.
   doc_url: https://formulas.readthedocs.io
 
 extra:
