@@ -5,11 +5,11 @@ Home: https://github.com/vinci1it2000/formulas
 
 Package license: EUPL-1.1
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/formulas-feedstock/blob/master/LICENSE.txt)
 
 Summary: Parse and compile Excel formulas and workbooks in python code.
 
-
+Documentation: https://formulas.readthedocs.io
 
 Current build status
 ====================
