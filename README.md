@@ -5,11 +5,11 @@ Home: https://github.com/vinci1it2000/formulas
 
 Package license: EUPL-1.1
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/formulas-feedstock/blob/master/LICENSE.txt)
 
 Summary: Parse and compile Excel formulas and workbooks in python code.
 
-
+Documentation: https://formulas.readthedocs.io
 
 Current build status
 ====================
@@ -30,6 +30,9 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-formulas-green.svg)](https://anaconda.org/conda-forge/formulas) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas.svg)](https://anaconda.org/conda-forge/formulas) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas.svg)](https://anaconda.org/conda-forge/formulas) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas.svg)](https://anaconda.org/conda-forge/formulas) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--all-green.svg)](https://anaconda.org/conda-forge/formulas-all) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-all.svg)](https://anaconda.org/conda-forge/formulas-all) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-all.svg)](https://anaconda.org/conda-forge/formulas-all) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-all.svg)](https://anaconda.org/conda-forge/formulas-all) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--excel-green.svg)](https://anaconda.org/conda-forge/formulas-excel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-excel.svg)](https://anaconda.org/conda-forge/formulas-excel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-excel.svg)](https://anaconda.org/conda-forge/formulas-excel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-excel.svg)](https://anaconda.org/conda-forge/formulas-excel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--plot-green.svg)](https://anaconda.org/conda-forge/formulas-plot) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-plot.svg)](https://anaconda.org/conda-forge/formulas-plot) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-plot.svg)](https://anaconda.org/conda-forge/formulas-plot) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-plot.svg)](https://anaconda.org/conda-forge/formulas-plot) |
 
 Installing formulas
 ===================
@@ -40,10 +43,10 @@ Installing `formulas` from the `conda-forge` channel can be achieved by adding `
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `formulas` can be installed with:
+Once the `conda-forge` channel has been enabled, `formulas, formulas-all, formulas-excel, formulas-plot` can be installed with:
 
 ```
-conda install formulas
+conda install formulas formulas-all formulas-excel formulas-plot
 ```
 
 It is possible to list all of the versions of `formulas` available on your platform with:
