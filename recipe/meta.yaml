@@ -1,6 +1,8 @@
 {% set name = "formulas" %}
 {% set version = "1.1.0" %}
 
+{% set build_number = "0" %}
+
 package:
   name: {{ name }}
   version: {{ version }}
@@ -11,67 +13,112 @@ source:
 
 build:
   noarch: python
-  number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: {{ build_number }}
 
 requirements:
   host:
-    - ddt
-    - docutils
-    - flask
-    - jinja2
-    - multiprocess
-    - nose
-    - numpy >=1.15
-    - openpyxl
     - pip
-    - pygments
-    - python >=3
-    - python-graphviz
-    - regex
-    - requests
-    - schedula >=1.1.1
-    - sphinx
-    - sphinx_rtd_theme
-    - sphinxcontrib-restbuilder
+    - python >=3.6
   run:
-    - numpy >=1.15
-    - python >=3
-    - python-dateutil
-    - regex
-    - schedula >=1.1.1
+    - python >=3.6
 
 test:
-  source_files:
-    - setup.cfg
-    - test
-  requires:
-    - ddt
-    - dill
-    - docutils
-    - flask
-    - jinja2
-    - multiprocess
-    - nose
-    - numpy >=1.15
-    - openpyxl
-    - pip
-    - pygments
-    - python >=3
-    - python-graphviz <0.10.1
-    - regex
-    - requests
-    - schedula >=0.3.1
-    - sphinx
-    - sphinx_rtd_theme
-    - sphinxcontrib-restbuilder
-  imports:
-    - formulas
   commands:
-    - rm test/test_readme.py test/test_setup.py  # [unix]
-    - del test\test_readme.py test\test_setup.py  # [win]
-    - nosetests
-    - python -m pip check
+    - echo "tests in subpackages"
+
+outputs:
+  - name: {{ name }}
+    build:
+      noarch: python
+      number: {{ build_number }}
+      script: {{ PYTHON }} -m pip install . --no-deps -vv
+    requirements:
+      host:
+        - pip
+        - python >=3.6
+      run:
+        - numpy >=1.15
+        - python >=3.6
+        - python-dateutil
+        - numpy-financial
+        - regex
+        - schedula >=1.1.1
+    test:
+      requires:
+        - pip
+      imports:
+        - formulas
+      commands:
+        - pip check
+
+  - name: {{ name }}-excel
+    build:
+      noarch: python
+      number: {{ build_number }}
+    requirements:
+      host:
+        - pip
+        - python >=3.6
+      run:
+        - {{ pin_subpackage(name, max_pin='x.x.x') }}
+        - openpyxl
+        - python >=3.6
+    test:
+      requires:
+        - pip
+      imports:
+        - formulas.excel
+      commands:
+        - pip check
+
+  - name: {{ name }}-plot
+    build:
+      noarch: python
+      number: {{ build_number }}
+    requirements:
+      host:
+        - pip
+        - python >=3.6
+      run:
+        - {{ pin_subpackage(name, max_pin='x.x.x') }}
+        - docutils
+        - flask
+        - jinja2
+        - pygments
+        - python >=3.6
+        - python-graphviz
+    test:
+      requires:
+        - pip
+      commands:
+        - pip check
+
+  - name: {{ name }}-all
+    build:
+      noarch: python
+      number: {{ build_number }}
+    requirements:
+      host:
+        - pip
+        - python >=3.6
+      run:
+        - {{ pin_subpackage(name + "-excel", max_pin='x.x.x') }}
+        - {{ pin_subpackage(name + "-plot", max_pin='x.x.x') }}
+        - python >=3.6
+    test:
+      source_files:
+        - test
+        - setup.cfg
+      requires:
+        - ddt
+        - dill
+        - nose >=1.0
+        - pip
+      commands:
+        - pip check
+        - rm test/test_readme.py test/test_setup.py  # [unix]
+        - del test\test_readme.py test\test_setup.py  # [win]
+        - nosetests
 
 about:
   home: https://github.com/vinci1it2000/formulas
