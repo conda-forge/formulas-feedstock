@@ -1,7 +1,7 @@
 {% set name = "formulas" %}
-{% set version = "1.1.0" %}
+{% set version = "1.1.1" %}
 
-{% set build_number = "0" %}
+{% set build_number = 0 %}
 
 package:
   name: {{ name }}
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: ec3e641911c7fee09ee9920636d08f045df06c49a118f613333f1540b8f5560f
+  sha256: 7ee391a5417d9f8514e84e7dd2e126e971494ab1c6383179f56905f511133d16
 
 build:
   noarch: python
