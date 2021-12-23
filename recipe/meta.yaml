@@ -1,15 +1,14 @@
-{% set name = "formulas" %}
-{% set version = "1.1.1" %}
+{% set version = "1.2.0" %}
 
 {% set build_number = 0 %}
 
 package:
-  name: {{ name }}
+  name: formulas-split
   version: {{ version }}
 
 source:
-  url: https://github.com/vinci1it2000/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 7ee391a5417d9f8514e84e7dd2e126e971494ab1c6383179f56905f511133d16
+  url: https://github.com/vinci1it2000/formulas/archive/v{{ version }}.tar.gz
+  sha256: 78dec6ad3212aee3ed0690a4133dec6f138d39b6dce9f8ed8ad802683aad8fba
 
 build:
   noarch: python
@@ -27,7 +26,7 @@ test:
     - echo "tests in subpackages"
 
 outputs:
-  - name: {{ name }}
+  - name: formulas
     build:
       noarch: python
       number: {{ build_number }}
@@ -51,7 +50,7 @@ outputs:
       commands:
         - pip check
 
-  - name: {{ name }}-excel
+  - name: formulas-excel
     build:
       noarch: python
       number: {{ build_number }}
@@ -60,7 +59,7 @@ outputs:
         - pip
         - python >=3.6
       run:
-        - {{ pin_subpackage(name, max_pin='x.x.x') }}
+        - {{ pin_subpackage('formulas', max_pin='x.x.x') }}
         - openpyxl
         - python >=3.6
     test:
@@ -71,7 +70,7 @@ outputs:
       commands:
         - pip check
 
-  - name: {{ name }}-plot
+  - name: formulas-plot
     build:
       noarch: python
       number: {{ build_number }}
@@ -80,7 +79,7 @@ outputs:
         - pip
         - python >=3.6
       run:
-        - {{ pin_subpackage(name, max_pin='x.x.x') }}
+        - {{ pin_subpackage('formulas', max_pin='x.x.x') }}
         - docutils
         - flask
         - jinja2
@@ -93,7 +92,7 @@ outputs:
       commands:
         - pip check
 
-  - name: {{ name }}-all
+  - name: formulas-all
     build:
       noarch: python
       number: {{ build_number }}
@@ -102,8 +101,8 @@ outputs:
         - pip
         - python >=3.6
       run:
-        - {{ pin_subpackage(name + "-excel", max_pin='x.x.x') }}
-        - {{ pin_subpackage(name + "-plot", max_pin='x.x.x') }}
+        - {{ pin_subpackage('formulas-excel', max_pin='x.x.x') }}
+        - {{ pin_subpackage('formulas-plot', max_pin='x.x.x') }}
         - python >=3.6
     test:
       source_files:
@@ -129,5 +128,6 @@ about:
   doc_url: https://formulas.readthedocs.io
 
 extra:
+  feedstock-name: formulas
   recipe-maintainers:
     - bollwyvl
