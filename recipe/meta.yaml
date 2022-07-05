@@ -1,4 +1,4 @@
-{% set version = "1.2.3" %}
+{% set version = "1.2.4" %}
 
 {% set build_number = 0 %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v{{ version }}.tar.gz
-  sha256: 03add653d689e09c8ce99de1e9e9729bec778e0097bb7fb03fc6752868c988a3
+  sha256: d3566c80f2df33cab532a6f97aa595b39da6faed543ccb508617316b8efb89c8
 
 build:
   noarch: python
@@ -41,7 +41,7 @@ outputs:
         - python-dateutil
         - numpy-financial
         - regex
-        - schedula >=1.1.1
+        - schedula >=1.2.18
     test:
       requires:
         - pip
