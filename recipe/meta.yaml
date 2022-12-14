@@ -37,9 +37,9 @@ outputs:
         - python >=3.6
       run:
         - numpy >=1.15
+        - numpy-financial
         - python >=3.6
         - python-dateutil
-        - numpy-financial
         - regex
         - schedula >=1.2.18
     test:
