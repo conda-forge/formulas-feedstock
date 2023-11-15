@@ -1,6 +1,5 @@
-{% set version = "1.2.6" %}
-
-{% set build_number = 0 %}
+{% set version = "1.2.7" %}
+{% set min_python = "python >=3.6" %}
 
 package:
   name: formulas-split
@@ -8,18 +7,17 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v{{ version }}.tar.gz
-  sha256: a73cbeac3a65433f4a47bb9fe4bab10190d3098eefc1614ee4b2c7c4df7ce65e
+  sha256: d61a7e2eadfce69183f6b69f8bb9f4ed5e14df2ace4ab91fd6717f85fcb3047a
 
 build:
   noarch: python
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   host:
-    - pip
-    - python >=3.6
+    - {{ min_python }}
   run:
-    - python >=3.6
+    - {{ min_python }}
 
 test:
   commands:
@@ -29,16 +27,15 @@ outputs:
   - name: formulas
     build:
       noarch: python
-      number: {{ build_number }}
-      script: {{ PYTHON }} -m pip install . --no-deps -vv
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
+        - {{ min_python }}
         - pip
-        - python >=3.6
       run:
+        - {{ min_python }}
         - numpy >=1.15
         - numpy-financial
-        - python >=3.6
         - python-dateutil
         - regex
         - schedula >=1.4.1
@@ -53,15 +50,14 @@ outputs:
   - name: formulas-excel
     build:
       noarch: python
-      number: {{ build_number }}
     requirements:
       host:
-        - pip
-        - python >=3.6
+        - {{ min_python }}
       run:
-        - {{ pin_subpackage('formulas', max_pin='x.x.x') }}
+        - {{ min_python }}
+        - {{ pin_subpackage('formulas', exact=True) }}
+        - dictdiffer
         - openpyxl
-        - python >=3.6
     test:
       requires:
         - pip
@@ -73,18 +69,16 @@ outputs:
   - name: formulas-plot
     build:
       noarch: python
-      number: {{ build_number }}
     requirements:
       host:
-        - pip
-        - python >=3.6
+        - {{ min_python }}
       run:
-        - {{ pin_subpackage('formulas', max_pin='x.x.x') }}
+        - {{ min_python }}
+        - {{ pin_subpackage('formulas', exact=True) }}
         - docutils
         - flask
         - jinja2
         - pygments
-        - python >=3.6
         - python-graphviz
     test:
       requires:
@@ -95,29 +89,32 @@ outputs:
   - name: formulas-all
     build:
       noarch: python
-      number: {{ build_number }}
     requirements:
       host:
-        - pip
-        - python >=3.6
+        - {{ min_python }}
       run:
-        - {{ pin_subpackage('formulas-excel', max_pin='x.x.x') }}
-        - {{ pin_subpackage('formulas-plot', max_pin='x.x.x') }}
-        - python >=3.6
+        - {{ min_python }}
+        - {{ pin_subpackage('formulas-excel', exact=True) }}
+        - {{ pin_subpackage('formulas-plot', exact=True) }}
     test:
       source_files:
         - test
-        - setup.cfg
       requires:
+        - coverage
         - ddt
         - dill
-        - nose >=1.0
         - pip
       commands:
         - pip check
-        - rm test/test_readme.py test/test_setup.py  # [unix]
-        - del test\test_readme.py test\test_setup.py  # [win]
-        - nosetests
+        {% set cov_fail_under = 98 %}
+        {% set delete_tests = [
+          "test/test_readme.py",
+          "test/test_setup.py",
+        ] %}
+        - python -c "import os; [os.unlink(p) for p in {{ delete_tests }}]"
+        - coverage run --source=formulas --branch -m unittest discover --start-directory test --pattern 'test_*.py'
+        - coverage report --show-missing --skip-covered --fail-under="{{ cov_fail_under }}"
+
 
 about:
   home: https://github.com/vinci1it2000/formulas
