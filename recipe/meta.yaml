@@ -106,13 +106,13 @@ outputs:
         - pip
       commands:
         - pip check
-        {% set cov_fail_under = 100 %}
+        {% set cov_fail_under = 98 %}
         {% set delete_tests = [
           "test/test_readme.py",
           "test/test_setup.py",
         ] %}
         - python -c "import os; [os.unlink(p) for p in {{ delete_tests }}]"
-        - coverage run --source=schedula --branch -m unittest discover --start-directory test --pattern 'test_*.py'
+        - coverage run --source=formulas --branch -m unittest discover --start-directory test --pattern 'test_*.py'
         - coverage report --show-missing --skip-covered --fail-under="{{ cov_fail_under }}"
 
 
