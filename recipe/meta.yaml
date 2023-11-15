@@ -1,4 +1,4 @@
-{% set version = "1.2.6" %}
+{% set version = "1.2.7" %}
 
 {% set build_number = 0 %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v{{ version }}.tar.gz
-  sha256: a73cbeac3a65433f4a47bb9fe4bab10190d3098eefc1614ee4b2c7c4df7ce65e
+  sha256: d61a7e2eadfce69183f6b69f8bb9f4ed5e14df2ace4ab91fd6717f85fcb3047a
 
 build:
   noarch: python
