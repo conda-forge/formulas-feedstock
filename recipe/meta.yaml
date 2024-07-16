@@ -1,4 +1,6 @@
-{% set version = "1.2.7" %}
+{% set cov_fail_under = 98 %}
+{% set min_python = "python >=3.6" %}
+{% set version = "1.2.8" %}
 {% set min_python = "python >=3.6" %}
 
 package:
@@ -7,7 +9,7 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v{{ version }}.tar.gz
-  sha256: d61a7e2eadfce69183f6b69f8bb9f4ed5e14df2ace4ab91fd6717f85fcb3047a
+  sha256: 5c7232c164d9aedba50bb2897d234069a56c06e1d4f9decb169de3257d2b0ffb
 
 build:
   noarch: python
