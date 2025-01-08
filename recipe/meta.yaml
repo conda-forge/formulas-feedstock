@@ -1,8 +1,6 @@
 {% set version = "1.2.8" %}
-{% set min_python = "python >=3.6" %}
 
-# handle undefined PYTHON in `noarch: generic` outputs
-{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
+{% set PYTHON = PYTHON | default("$PYTHON") %}
 
 package:
   name: formulas
@@ -13,18 +11,21 @@ source:
   sha256: 5c7232c164d9aedba50bb2897d234069a56c06e1d4f9decb169de3257d2b0ffb
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    - python -c "import os; [os.unlink(f'test/test_{p}.py') for p in ['readme', 'setup']]"
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
   run:
     - numpy >=1.15
     - numpy-financial
-    - python >=3.6
+    - python >={{ python_min }}
     - python-dateutil
     - regex
     - schedula >=1.4.1
@@ -32,6 +33,7 @@ requirements:
 test:
   requires:
     - pip
+    - python {{ python_min }}
   imports:
     - formulas
   commands:
@@ -58,8 +60,6 @@ outputs:
 
   - name: formulas-plot
     build:
-      noarch: python
-    build:
       noarch: generic
     requirements:
       run:
@@ -72,6 +72,7 @@ outputs:
     test:
       requires:
         - pip
+        - python {{ python_min }}
       commands:
         - pip check
 
@@ -90,16 +91,11 @@ outputs:
         - ddt
         - dill
         - pip
+        - python {{ python_min }}
       commands:
         - pip check
-        {% set cov_fail_under = 98 %}
-        {% set delete_tests = [
-          "test/test_readme.py",
-          "test/test_setup.py",
-        ] %}
-        - python -c "import os; [os.unlink(p) for p in {{ delete_tests }}]"
         - coverage run --source=formulas --branch -m unittest discover --start-directory test --pattern 'test_*.py'
-        - coverage report --show-missing --skip-covered --fail-under="{{ cov_fail_under }}"
+        - coverage report --show-missing --skip-covered --fail-under=98
 
 about:
   home: https://github.com/vinci1it2000/formulas
