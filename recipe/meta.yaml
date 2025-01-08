@@ -14,6 +14,7 @@ build:
   number: 1
   noarch: python
   script:
+    - python -c "import os; [os.unlink(f'test/test_{p}.py') for p in ['readme', 'setup']]"
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
@@ -93,7 +94,6 @@ outputs:
         - python {{ python_min }}
       commands:
         - pip check
-        - python -c "import os; [os.unlink(f'tests/test_{p}.py') for p in ['readme', 'setup']]"
         - coverage run --source=formulas --branch -m unittest discover --start-directory test --pattern 'test_*.py'
         - coverage report --show-missing --skip-covered --fail-under=98
 
