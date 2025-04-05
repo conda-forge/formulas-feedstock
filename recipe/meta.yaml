@@ -1,4 +1,4 @@
-{% set version = "1.2.8" %}
+{% set version = "1.2.9" %}
 
 {% set PYTHON = PYTHON | default("$PYTHON") %}
 
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v{{ version }}.tar.gz
-  sha256: 5c7232c164d9aedba50bb2897d234069a56c06e1d4f9decb169de3257d2b0ffb
+  sha256: 38169a5bea62e76713089896b26f702315f6f90b770d8abe3e7389b7fc959bcc
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script:
     - python -c "import os; [os.unlink(f'test/test_{p}.py') for p in ['readme', 'setup']]"
