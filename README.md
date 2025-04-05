@@ -9,7 +9,7 @@ Package license: EUPL-1.1
 
 Summary: Parse and compile Excel formulas and workbooks in python code.
 
-Documentation: https://formulas.readthedocs.io
+Documentation: https://formulas.readthedocs.io/
 
 Current build status
 ====================

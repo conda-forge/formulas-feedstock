@@ -1,0 +1,123 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 1.2.9
+  python_max_check: "3.13"
+
+recipe:
+  name: formulas
+  version: ${{ version }}
+
+source:
+  url: https://github.com/vinci1it2000/formulas/archive/v${{ version }}.tar.gz
+  sha256: 38169a5bea62e76713089896b26f702315f6f90b770d8abe3e7389b7fc959bcc
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: formulas
+    build:
+      number: 0
+      noarch: python
+      script:
+        - "python -c \"import os; [os.unlink(f'test/test_{p}.py') for p in ['readme', 'setup']]\""
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - numpy >=1.15
+        - numpy-financial
+        - python >=${{ python_min }}
+        - python-dateutil
+        - regex
+        - schedula >=1.4.1
+    tests:
+      - python:
+          imports: formulas
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: formulas-excel
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("formulas", upper_bound="x.x.x") }}
+        - dictdiffer
+        - openpyxl
+    tests:
+      - python:
+          imports: formulas.excel
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_max_check }}.*
+
+  - package:
+      name: formulas-plot
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("formulas", upper_bound="x.x.x") }}
+        - docutils
+        - flask
+        - jinja2
+        - pygments
+        - python-graphviz
+    tests:
+      - python:
+          imports: formulas
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_max_check }}.*
+
+  - package:
+      name: formulas-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("formulas-excel", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("formulas-plot", upper_bound="x.x.x") }}
+    tests:
+      - python:
+          imports: formulas
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_max_check }}.*
+      - files:
+          source:
+            - test/
+        requirements:
+          run:
+            - coverage
+            - ddt
+            - dill
+            - python ${{ python_min }}.*
+        script:
+            # these expect a source checkout on PYTHONPATH
+          - python -c "from pathlib import Path; [Path(f'test/{p}').unlink() for p in ['test_readme.py', 'test_setup.py']]"
+          - coverage run --source=formulas --branch -m unittest discover --start-directory test --pattern 'test_*.py'
+          - coverage report --show-missing --skip-covered --fail-under=97
+
+about:
+  license: EUPL-1.1
+  license_file: LICENSE.txt
+  summary: Parse and compile Excel formulas and workbooks in python code.
+  homepage: https://github.com/vinci1it2000/formulas
+  documentation: https://formulas.readthedocs.io
+
+extra:
+  feedstock-name: formulas
+  recipe-maintainers:
+    - bollwyvl
