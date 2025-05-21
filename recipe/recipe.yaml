@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: 1.2.9
+  version: "1.2.10"
   python_max_check: "3.13"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v${{ version }}.tar.gz
-  sha256: 38169a5bea62e76713089896b26f702315f6f90b770d8abe3e7389b7fc959bcc
+  sha256: 1f61ae5732c09d575091392b20912484ced124c2e398f7fac470773d629fca35
 
 build:
   number: 0
@@ -23,7 +23,6 @@ outputs:
       number: 0
       noarch: python
       script:
-        - "python -c \"import os; [os.unlink(f'test/test_{p}.py') for p in ['readme', 'setup']]\""
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
     requirements:
       host:
@@ -49,7 +48,7 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("formulas", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("formulas", exact=True) }}
         - dictdiffer
         - openpyxl
     tests:
@@ -66,7 +65,7 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("formulas", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("formulas", exact=True) }}
         - docutils
         - flask
         - jinja2
@@ -86,8 +85,8 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("formulas-excel", upper_bound="x.x.x") }}
-        - ${{ pin_subpackage("formulas-plot", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("formulas-excel", exact=True) }}
+        - ${{ pin_subpackage("formulas-plot", exact=True) }}
     tests:
       - python:
           imports: formulas
