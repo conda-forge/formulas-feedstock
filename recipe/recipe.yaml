@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.2.11"
+  version: "1.3.0"
   python_max_check: "3.13"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v${{ version }}.tar.gz
-  sha256: d51a30ce798120ca7930d777dda9c254d1bd1619b22d2a13fd51570757409eb2
+  sha256: 6c90405d63bd2bf52946fb380a23855adf7cfe0aef872ce744cd307ae53f00ca
 
 build:
   number: 0
