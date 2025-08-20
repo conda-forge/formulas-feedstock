@@ -36,6 +36,7 @@ outputs:
         - python-dateutil
         - regex
         - schedula >=1.4.1
+        - scipy
     tests:
       - python:
           imports: formulas
@@ -50,6 +51,8 @@ outputs:
       run:
         - ${{ pin_subpackage("formulas", exact=True) }}
         - dictdiffer
+        - ezodf
+        - lxml
         - openpyxl
     tests:
       - python:
