@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.3.0"
+  version: "1.3.1"
   python_max_check: "3.13"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://github.com/vinci1it2000/formulas/archive/v${{ version }}.tar.gz
-  sha256: 6c90405d63bd2bf52946fb380a23855adf7cfe0aef872ce744cd307ae53f00ca
+  sha256: 73ff20fbd92775393e8d62b5b655008f195a5ac666b5f583333d6a13a69f5bf4
 
 build:
   number: 0
@@ -108,10 +108,7 @@ outputs:
             - pytest
             - python ${{ python_min }}.*
         script:
-            # these expect a source checkout on PYTHONPATH
-          - python -c "from pathlib import Path; [Path(f'test/{p}').unlink() for p in ['test_readme.py', 'test_setup.py']]"
-          - coverage run --source=formulas --branch -m pytest -vv --tb=long --color=yes -k "not (test_output_025 or test_excel_model or test_ods_model)"
-          - coverage report --show-missing --skip-covered --fail-under=77
+          file: run_test.py
 
 about:
   license: EUPL-1.1
