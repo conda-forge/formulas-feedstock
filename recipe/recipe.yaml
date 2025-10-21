@@ -3,7 +3,7 @@ schema_version: 1
 
 context:
   version: "1.3.2"
-  python_max_check: "3.13"
+  python_max_check: "3.14"
 
 recipe:
   name: formulas
@@ -37,11 +37,14 @@ outputs:
         - regex
         - schedula >=1.4.1
         - scipy
+        - tqdm
     tests:
       - python:
           imports: formulas
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_max_check }}.*
 
   - package:
       name: formulas-excel
