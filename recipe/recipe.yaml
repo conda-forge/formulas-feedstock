@@ -55,7 +55,6 @@ outputs:
         script:
           - formulas --help
 
-
   - package:
       name: formulas-excel
     build:
@@ -74,6 +73,8 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_max_check }}.*
+    about:
+      summary: Parse and compile Excel formulas and workbooks in python code. (with [excel])
 
   - package:
       name: formulas-plot
@@ -94,6 +95,27 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_max_check }}.*
+    about:
+      summary: Parse and compile Excel formulas and workbooks in python code. (with [plot])
+
+  - package:
+      name: formulas-cli
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("formulas", exact=True) }}
+        - ${{ pin_subpackage("formulas-excel", exact=True) }}
+        - click-log
+    tests:
+      - python:
+          imports: formulas.cli
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_max_check }}.*
+    about:
+      summary: Parse and compile Excel formulas and workbooks in python code. (with [cli])
 
   - package:
       name: formulas-all
@@ -103,6 +125,7 @@ outputs:
       run:
         - ${{ pin_subpackage("formulas-excel", exact=True) }}
         - ${{ pin_subpackage("formulas-plot", exact=True) }}
+        - ${{ pin_subpackage("formulas-cli", exact=True) }}
     tests:
       - python:
           imports: formulas
@@ -122,6 +145,8 @@ outputs:
             - python ${{ python_min }}.*
         script:
           file: run_test.py
+    about:
+      summary: Parse and compile Excel formulas and workbooks in python code. (with all [extras])
 
 about:
   license: EUPL-1.1
