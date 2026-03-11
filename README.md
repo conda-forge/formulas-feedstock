@@ -3,11 +3,67 @@ About formulas-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/formulas-feedstock/blob/main/LICENSE.txt)
 
+
+About formulas
+--------------
+
 Home: https://pypi.org/project/formulas
 
 Package license: EUPL-1.1
 
 Summary: Parse and compile Excel formulas and workbooks in python code.
+
+Development: https://github.com/vinci1it2000/formulas
+
+Documentation: https://formulas.readthedocs.io/
+
+About formulas-all
+------------------
+
+Home: https://pypi.org/project/formulas
+
+Package license: EUPL-1.1
+
+Summary: Parse and compile Excel formulas and workbooks in python code. (with all [extras])
+
+Development: https://github.com/vinci1it2000/formulas
+
+Documentation: https://formulas.readthedocs.io/
+
+About formulas-cli
+------------------
+
+Home: https://pypi.org/project/formulas
+
+Package license: EUPL-1.1
+
+Summary: Parse and compile Excel formulas and workbooks in python code. (with [cli])
+
+Development: https://github.com/vinci1it2000/formulas
+
+Documentation: https://formulas.readthedocs.io/
+
+About formulas-excel
+--------------------
+
+Home: https://pypi.org/project/formulas
+
+Package license: EUPL-1.1
+
+Summary: Parse and compile Excel formulas and workbooks in python code. (with [excel])
+
+Development: https://github.com/vinci1it2000/formulas
+
+Documentation: https://formulas.readthedocs.io/
+
+About formulas-plot
+-------------------
+
+Home: https://pypi.org/project/formulas
+
+Package license: EUPL-1.1
+
+Summary: Parse and compile Excel formulas and workbooks in python code. (with [plot])
 
 Development: https://github.com/vinci1it2000/formulas
 
@@ -33,6 +89,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-formulas-green.svg)](https://anaconda.org/conda-forge/formulas) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas.svg)](https://anaconda.org/conda-forge/formulas) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas.svg)](https://anaconda.org/conda-forge/formulas) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas.svg)](https://anaconda.org/conda-forge/formulas) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--all-green.svg)](https://anaconda.org/conda-forge/formulas-all) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-all.svg)](https://anaconda.org/conda-forge/formulas-all) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-all.svg)](https://anaconda.org/conda-forge/formulas-all) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-all.svg)](https://anaconda.org/conda-forge/formulas-all) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--cli-green.svg)](https://anaconda.org/conda-forge/formulas-cli) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-cli.svg)](https://anaconda.org/conda-forge/formulas-cli) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-cli.svg)](https://anaconda.org/conda-forge/formulas-cli) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-cli.svg)](https://anaconda.org/conda-forge/formulas-cli) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--excel-green.svg)](https://anaconda.org/conda-forge/formulas-excel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-excel.svg)](https://anaconda.org/conda-forge/formulas-excel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-excel.svg)](https://anaconda.org/conda-forge/formulas-excel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-excel.svg)](https://anaconda.org/conda-forge/formulas-excel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-formulas--plot-green.svg)](https://anaconda.org/conda-forge/formulas-plot) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/formulas-plot.svg)](https://anaconda.org/conda-forge/formulas-plot) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/formulas-plot.svg)](https://anaconda.org/conda-forge/formulas-plot) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/formulas-plot.svg)](https://anaconda.org/conda-forge/formulas-plot) |
 
@@ -46,16 +103,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `formulas, formulas-all, formulas-excel, formulas-plot` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `formulas, formulas-all, formulas-cli, formulas-excel, formulas-plot` can be installed with `conda`:
 
 ```
-conda install formulas formulas-all formulas-excel formulas-plot
+conda install formulas formulas-all formulas-cli formulas-excel formulas-plot
 ```
 
 or with `mamba`:
 
 ```
-mamba install formulas formulas-all formulas-excel formulas-plot
+mamba install formulas formulas-all formulas-cli formulas-excel formulas-plot
 ```
 
 It is possible to list all of the versions of `formulas` available on your platform with `conda`:
