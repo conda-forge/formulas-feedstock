@@ -3,11 +3,13 @@ About formulas-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/formulas-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/vinci1it2000/formulas
+Home: https://pypi.org/project/formulas
 
 Package license: EUPL-1.1
 
 Summary: Parse and compile Excel formulas and workbooks in python code.
+
+Development: https://github.com/vinci1it2000/formulas
 
 Documentation: https://formulas.readthedocs.io/
 
