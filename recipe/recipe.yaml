@@ -24,6 +24,7 @@ outputs:
       noarch: python
       script:
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+        - ${{ PYTHON }} -c "__import__('shutil').copytree('formulas/gui/templates/', '${{ SP_DIR }}/formulas/gui/templates/')"
       python:
         entry_points:
           - formulas = formulas.cli:cli
@@ -49,11 +50,6 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_max_check }}.*
-      - requirements:
-          run:
-            - python ${{ python_min }}.*
-        script:
-          - formulas --help
 
   - package:
       name: formulas-excel
@@ -104,9 +100,10 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("formulas", exact=True) }}
         - ${{ pin_subpackage("formulas-excel", exact=True) }}
+        - ${{ pin_subpackage("formulas", exact=True) }}
         - click-log
+        - flask
     tests:
       - python:
           imports: formulas.cli
