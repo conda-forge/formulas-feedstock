@@ -24,12 +24,16 @@ outputs:
       noarch: python
       script:
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      python:
+        entry_points:
+          - formulas = formulas.cli:cli
     requirements:
       host:
         - pip
         - python ${{ python_min }}.*
         - setuptools
       run:
+        - click
         - numpy >=1.15
         - numpy-financial
         - python >=${{ python_min }}
@@ -45,6 +49,12 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_max_check }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - formulas --help
+
 
   - package:
       name: formulas-excel
@@ -117,7 +127,8 @@ about:
   license: EUPL-1.1
   license_file: LICENSE.txt
   summary: Parse and compile Excel formulas and workbooks in python code.
-  homepage: https://github.com/vinci1it2000/formulas
+  homepage: https://pypi.org/project/formulas
+  repository: https://github.com/vinci1it2000/formulas
   documentation: https://formulas.readthedocs.io
 
 extra:
