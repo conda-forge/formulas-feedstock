@@ -73,6 +73,9 @@ SKIPS = [
     "test_result_15",
     "test_result_16",
     "test_result_17",
+    # https://github.com/conda-forge/formulas-feedstock/pull/21
+    "test_output_270",
+    "test_result_18",
 ]
 DELETE = [
     "test/test_readme.py",
